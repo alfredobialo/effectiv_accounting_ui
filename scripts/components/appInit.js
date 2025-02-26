@@ -7,7 +7,9 @@
     
     function uiController(scope){
         scope.data = {
-            title : "New UI for Effectiv Business Solution"
+            title : "New UI for Effectiv Business Solution",
+            author: "Alfred Obialo",
+            version : "2.5",
         };
     }
 })(angular, window);
