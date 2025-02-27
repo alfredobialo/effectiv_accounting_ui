@@ -18,8 +18,8 @@
 <div class=" container mt-10">
     <div class="mb-10 min-h70  d-md-flex justify-content-md-between align-items-md-center">
         <div class="px-7 btn-">
-            <h1 class="font-weight-bolder color-blue">{{data.title}} <sup class="color-green">v{{data.version}}</sup></h1>
-            <span class="text-muted">Built by: {{data.author}}</span> 
+            <h1 class="font-weight-bolder color-blue">{{data.title}} <sup class="color-green">{{data.version}}</sup></h1>
+            
         </div>
         <div class="mt-3 mt-md-0 pl-4 pl-md-0">
             <div class="w-325px bg-white shadow-stronger-fade-lite border-capsule px-5 py-3">
@@ -32,17 +32,16 @@
    <div class="bg-white min-h200 border-radius-lg mb-3 d-flex flex-column justify-content-between">
        <div class="d-flex align-items-center">
            <div class="px-10 py-12 border-right">
-               <p>Total Transactions</p>
-               <h1 class="font-weight-bolder">[45]</h1>
-               <span>19 Transaction since las Month</span>
+               <span class="bold">Welcome Back</span> <br> 
+               <span class="font-size-28 color-orange">{{data.author}}</span>
            </div>
            <div class="px-10 py-12 border-right">
-               <p>Total Transactions</p>
-               <h1 class="font-weight-bolder">[290,780.90]</h1>
+               <p>Current Bal (USD)</p>
+               <h1 class="font-weight-bolder">{{data.dashboard.balance | currency}}</h1>
            </div>
            <div class="px-10 py-12 border-right">
-               <p class="color-green">Total Transactions</p>
-               <h1 class="font-weight-bolder">[455,489.00]</h1>
+               <p class="">Mining Bal (USD)</p>
+               <h1 class="font-weight-bolder">{{data.dashboard.miningBal |currency }}</h1>
            </div>  
        </div>
        <div class="d-flex mt-3 px-10">
