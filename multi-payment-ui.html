@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="en" ng-app="effectiv_accounting_ui">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="./_ux2021/____bootstrap3/bootstrap.min.css">
+    
+    <title>UI/UX Test Suite</title>
+    <link rel="stylesheet" href="./_ux2021/assets/css/style.bundle.css">
+    <link rel="stylesheet" href="scripts/ng/select.min.css">
+    <link rel="stylesheet" href="./styles/base/theme-base.css">
+    <link rel="stylesheet" href="styles/ionic/css/ionicons.min.css">
+
+
+</head>
+<body ng-controller="MultiPaymentController">
+<div class=" container mt-10">
+    <div class="mb-10 min-h70  d-md-flex justify-content-md-between align-items-md-center">
+        <div class="px-7 btn-">
+            <h1 class="font-weight-bolder color-blue">{{data.title}} 
+            </h1>
+            <span class="text-muted">{{data.subTitle}}</span>
+        </div>
+        <div class="mt-3 mt-md-0 pl-4 pl-md-0">
+            <div class="w-325px bg-white shadow-stronger-fade-lite border-capsule px-5 py-3">
+                <input type="search" class="border-0 w-100 font-size-15" placeholder="Search Document" >
+            </div>
+        </div>
+        
+        
+    </div>
+   <div class="bg-white min-h200 border-radius-lg mb-3 d-flex flex-column justify-content-end">
+       <div class="d-flex align-items-center p-6">
+           <h1 class="color-green">Total Amount :NGN {{totalAmount | number}}</h1>
+       </div>
+       
+       
+   </div>
+   <div class="bg-white min-h700 border-radius-lg mb-4 px-8 py-7">
+       <div class="d-flex justify-content-start ">
+           <div class=" w-350px">
+               <div class="mb-2 px-5 py-4 bg-gray-100 border-radius-md ">
+                   Select An Account <br>
+                   <select name="cboPayment" class="form-control"
+                           ng-options="acc as acc.title for acc in accounts"
+                           ng-model="paymentEntry.account" id="">
+                       <!-- <option value="">Select Account</option>-->
+
+                   </select>
+               </div>
+               <div class="mb-2 px-5 py-4 bg-gray-100 border-radius-md ">
+                   Amount <br>
+                   <input type="number" ng-model="paymentEntry.amount"  class="form-control">
+               </div>
+               <div class="mb-2 px-5 py-4 bg-gray-100 border-radius-md ">
+                   Payment Method <br>
+                   <select name="cboPaymentMethod" class="form-control"
+                           ng-options="acc as acc for acc in paymentMethod"
+                           ng-model="paymentEntry.method" >
+                       <!-- <option value="">Select Account</option>-->
+
+                   </select>
+               </div>
+               <div class="mb-2 px-5 py-4  d-flex justify-content-end align-items-center">
+                   <button class="btn btn-primary btn-lg" ng-click="addPayment(paymentEntry)">Add Payment</button>
+                  
+               </div>
+
+               <div>
+                   Amount Received <br><br>
+                   <input type="number" ng-model="cashPayment"
+                          ng-change="addDefaultCashPayment(cashPayment)"
+                           class="form-control form-control-lg">
+               </div>
+           </div>
+           <div class="p-8 w-350px">
+               <p class="lead text-muted ">Payment Added</p>
+               <div class="divider"></div>
+               <div class="mt-4" >
+                    <div ng-repeat="p in payments " class="d-flex border-capsule mb-3 px-6 py-4 justify-content-between align-items-center bg-gray-100">
+                        <div class="d-flex justify-content-center flex-column align-items-start">
+                            <span class="bold font-size-12 color-blue">{{p.account.title}}</span>
+                            <span class="color-green font-size-15">{{p.amount|currency:'NGN '}}</span>
+                            <span class="text-muted font-size-10">{{p.method}}</span>
+                           
+                        </div>
+                        <div>
+                            <div class="d-flex justify-content-center align-items-center border-radius-circle h-30px w-30px 
+                             font-size-17 bg-app-red p-4 cursor-pointer user-select-none  "
+                            ng-click="removePayment($index)"
+                            >X</div>
+
+                        </div>
+                        
+                    </div>
+               </div>
+           </div>
+       </div>
+       
+   </div>
+    
+</div>
+<script src="scripts/ng/angular.min.js"></script>
+<script src="scripts/ng/angular-ui-router.min.js"></script>
+<script src="scripts/ng/angular-animate.min.js"></script>
+<script src="scripts/ng/ng-bs-daterangepicker.js"></script>
+<script src="scripts/ng/select.min.js"></script>
+<script src="scripts/ng/ui-bootstrap-tpls-3.0.6.js"></script>
+<script src="scripts/components/appInit.js"></script>
+</body>
+</html>
