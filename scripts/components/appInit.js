@@ -50,13 +50,7 @@
         }
         scope.payments = [];  // array of paymentEntry
         scope.totalAmount = 0.00;
-        scope.$watchCollection("payments", function (newObj, oldObj) {
-            var sum = 0 ;
-            scope.payments.forEach(function (x){
-                 sum += x.amount;
-            });
-            scope.totalAmount = sum;
-        })
+        
         
         // Define Payment Accounts
         scope.accounts = [
@@ -100,8 +94,20 @@
         
         function canAddPayment(paymentEntry) {
             // if we are still below the limit return true
-            if(scope.payments.length <= scope.paymentEntryLimit){
+            if(scope.payments.length < scope.paymentEntryLimit){
                 return true;
+            }
+            
+            // check if we have payment : Not this check occurrs if we have Exceeded the limit of scope.paymentEntryLimit 
+            if (scope.payments.length > 0) {
+                var result = scope.payments.find(function (x) {
+                    return (x.account.id === paymentEntry.account.id);
+                });
+
+                if (result !== undefined) {
+                    // entry  found, so update entry
+                    return true;
+                }
             }
             return false
         }
@@ -131,17 +137,19 @@
                     scope.payments.push({...paymentEntry});
 
                 }  
-                /*scope.totalAmount += scope.payments.map(function (x) {
-                        return x.amount;
-                    })*/ console.log(scope.payments, scope.totalAmount);
+              
                
             }
+            
+            // recalculate total 
+            calculateTotalCashPayment();
 
         }
         
         scope.removePayment = removePayment;
         function removePayment(index){
             scope.payments.splice(index, 1);
+            calculateTotalCashPayment()
         }
         
         scope.addDefaultCashPayment = addDefaultCashPayment;
@@ -153,7 +161,13 @@
             };
             
            addPayment(newEntry,false);
-            
+        }
+        function calculateTotalCashPayment(){
+            var sum = 0 ;
+            scope.payments.forEach(function (x){
+                sum += x.amount;
+            });
+            scope.totalAmount = sum;
         }
     }
 })(angular, window);
