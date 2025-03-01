@@ -154,13 +154,15 @@
         
         scope.addDefaultCashPayment = addDefaultCashPayment;
         function addDefaultCashPayment(cashPayment){
-            var newEntry = {
-                account : scope.accounts[0],
-                amount : cashPayment,
-                method : "Cash",
-            };
-            
-           addPayment(newEntry,false);
+            if(scope.paymentEntry.account.id === "1000") {
+                var newEntry = {
+                    account: scope.accounts[0],
+                    amount: cashPayment,
+                    method: "Cash",
+                };
+
+                addPayment(newEntry, false);
+            }
         }
         function calculateTotalCashPayment(){
             var sum = 0 ;

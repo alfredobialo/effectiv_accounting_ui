@@ -39,8 +39,8 @@
    </div>
    <div class="bg-white min-h700 border-radius-lg mb-4 px-8 py-7">
        <div class="d-flex justify-content-start ">
-           <div class=" w-350px">
-               <div class="mb-2 px-5 py-4 bg-gray-100 border-radius-md ">
+           <div class=" w-350px bg-gray-100 px-5 py-4 border-radius-lg shadow-stronger">
+               <div class="mb-2 px-5 py-4  border-radius-md ">
                    Select An Account <br>
                    <select name="cboPayment" class="form-control"
                            ng-options="acc as acc.title for acc in accounts"
@@ -49,11 +49,11 @@
 
                    </select>
                </div>
-               <div class="mb-2 px-5 py-4 bg-gray-100 border-radius-md ">
+               <div class="mb-2 px-5 py-4  border-radius-md ">
                    Amount <br>
-                   <input type="number" ng-model="paymentEntry.amount"  class="form-control">
+                   <input type="number" ng-model="paymentEntry.amount" ng-change="addDefaultCashPayment(paymentEntry.amount)"  class="form-control">
                </div>
-               <div class="mb-2 px-5 py-4 bg-gray-100 border-radius-md ">
+               <div class="mb-2 px-5 py-4  border-radius-md ">
                    Payment Method <br>
                    <select name="cboPaymentMethod" class="form-control"
                            ng-options="acc as acc for acc in paymentMethod"
@@ -67,14 +67,8 @@
                   
                </div>
 
-               <div>
-                   Amount Received <br><br>
-                   <input type="number" ng-model="cashPayment"
-                          ng-change="addDefaultCashPayment(cashPayment)"
-                           class="form-control form-control-lg">
-               </div>
            </div>
-           <div class="p-8 w-350px">
+           <div class="p-0 ml-6 w-350px">
                <p class="lead text-muted ">Payment Added</p>
                <div class="divider"></div>
                <div class="mt-4" >
