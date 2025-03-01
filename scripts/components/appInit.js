@@ -85,7 +85,7 @@
         /*
         *  make it possible for addPayment to occur after the Payment limit
         * is reached When: 
-        * 1) the new Payment Entry already exist an we need to increment the amt
+        * 1) the new Payment Entry already exist and we need to increment the amt
         *       so if we already have 3 entries and the next entry is not in
         *       the list, Ignore the requested entry.
         *       - but if we have a similar payment entry with the same account.id 
@@ -98,7 +98,7 @@
                 return true;
             }
             
-            // check if we have payment : Not this check occurrs if we have Exceeded the limit of scope.paymentEntryLimit 
+            // check if we have payment : Note: this check occurs if we have Exceeded the limit of scope.paymentEntryLimit 
             if (scope.payments.length > 0) {
                 var result = scope.payments.find(function (x) {
                     return (x.account.id === paymentEntry.account.id);
