@@ -35,6 +35,13 @@
         }
         startFakeMining(3000);
         
+        // ==================  ACCOUNT LEDGER  ========================
+        var accLedger = {
+            title: "Account Ledger",
+           summary : [{ }]
+        };
+        scope.accountData = accLedger;
+        
     }
     
     function MultiPaymentController(scope){

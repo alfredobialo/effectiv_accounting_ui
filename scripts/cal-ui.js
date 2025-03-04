@@ -1,4 +1,6 @@
-var calculatorLcdDisplay = function(lcdValue){ document.getElementsByTagName("h1")[0].innerText = lcdValue;
+var calculatorLcdDisplay = function(lcdValue){
+    document.getElementsByTagName("h1")[0].innerText = lcdValue.data;
+    document.getElementById("currentOperator").innerText = lcdValue.operator;    
 }
 var cal = apps.calculator(calculatorLcdDisplay);
 
@@ -55,7 +57,22 @@ document.getElementById("btnMemory")
     //cal.btn();
 });
 
+document.getElementById("btnPlus")
+    .addEventListener("click", function(){
+        cal.operatorPlusPress();
+    });
 
+document.getElementById("btnMinus")
+    .addEventListener("click", function(){
+        cal.operatorMinusPress();
+    });
 
-
+document.getElementById("btnDiv")
+    .addEventListener("click", function(){
+        cal.operatorDivisionPress();
+    });
+document.getElementById("btnMultiply")
+    .addEventListener("click", function(){
+        cal.operatorMultiplyPress();
+    });
 

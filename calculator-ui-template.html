@@ -17,36 +17,50 @@
 <div class=" container mt-10">
        
    <div class="bg-white min-h700 border-radius-lg mb-4 px-8 py-7">
-       <h1 class="color-green-lite border-radius-md font-size-36 bg-gray-800 text-right px-3 py-2">Calculator</h1>
+       <div class="color-green border-radius-md position-relative  bg-gray-800 px-3 py-2">
+           <span id="currentOperator" class="p-2 color-gray-lite font-size-15 position-absolute "></span>
+           <h1 class="text-right font-size-36 ml-10 overflow-hidden" >
+               Calculator
+           </h1>
+           
+       </div>
+      
        
        <div class="d-flex align-items-center  flex-column">
            <div class=" d-flex mt-4 " style="gap: 10px;">
            <button class="btn btn-primary" id="btnCE">CE</button>
            <button class="btn btn-primary" id="btnMemory">M+</button>
            <button class="btn btn-primary" id="btnBackSpace"><span>&cularr;</span></button>
+              
        </div>
            <div class=" d-flex mt-4 " style="gap: 10px;">
                <button class="btn btn-primary" id="btnNum7">7</button>
                <button class="btn btn-primary" id="btnNum8">8</button>
                <button class="btn btn-primary" id="btnNum9">9</button>
+               <button class="btn btn-success" id="btnDiv">/</button>
            </div>
            <div class=" d-flex mt-4 " style="gap: 10px;">
                <button class="btn btn-primary" id="btnNum4">4</button>
                <button class="btn btn-primary" id="btnNum5">5</button>
                <button class="btn btn-primary" id="btnNum6">6</button>
+               <button class="btn btn-success" id="btnMultiply">x</button>
            </div>
            <div class=" d-flex mt-4 " style="gap: 10px;">
                <button class="btn btn-primary" id="btnNum1">1</button>
                <button class="btn btn-primary" id="btnNum2">2</button>
                <button class="btn btn-primary" id="btnNum3">3</button>
+               <button class="btn btn-success" id="btnMinus">-</button>
            </div>
            <div class=" d-flex mt-4 " style="gap: 10px;">
-               <button class="btn btn-primary" id="btnPlus">+/-</button>
+               <button class="btn btn-primary" id="btnPlusMinus">+/-</button>
                <button class="btn btn-primary" id="btnNum0">0</button>
                <button class="btn btn-primary" id="btnDot">.</button>
+               <button class="btn btn-success" id="btnPlus">+</button>
            </div>
            
-           
+           <div class="flex-grow-1 mt-4">
+               <button class="btn btn-light-danger btn-block w-100" id="btnEquals">=</button>
+           </div>
            
            
        </div>
