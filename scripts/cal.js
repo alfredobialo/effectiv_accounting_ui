@@ -101,12 +101,13 @@
                 previousOperator = lcd.operator;
                 lcd.operator = "+";
                 opPressed = true;
-                if(previousOperator === "+"){
+                op1 += parseLcd();
+                /*if(previousOperator === "+"){
                     op1 += parseLcd();
                 }
                 else{
                     op1 = parseLcd();
-                }
+                }*/
                 
                 lcd.data= op1 +"";
                 updateLcd()
@@ -131,6 +132,13 @@
                 op1 *= parseLcd();
                 lcd.data= op1 +"";
                 updateLcd()
+            },
+             operatorEqualsPress : function (){
+                lcd.operator = "=";
+                //opPressed = true;
+                //op1 *= parseLcd();
+                //lcd.data= op1 +"";
+                updateLcd();
             },
             
         };

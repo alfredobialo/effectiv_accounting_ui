@@ -75,4 +75,8 @@ document.getElementById("btnMultiply")
     .addEventListener("click", function(){
         cal.operatorMultiplyPress();
     });
+document.getElementById("btnEquals")
+    .addEventListener("click", function(){
+        cal.operatorEqualsPress();
+    });
 
