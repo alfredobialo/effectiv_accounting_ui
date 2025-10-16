@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="effectiv_accounting_ui">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <title>Accounting</title>
+    <link rel="stylesheet" href="./_ux2021/assets/css/style.bundle.css">
+    <link rel="stylesheet" href="scripts/ng/select.min.css">
+    <link rel="stylesheet" href="./styles/base/theme-base.css">
+    <link rel="stylesheet" href="styles/ionic/css/ionicons.min.css">
+
+
+</head>
+<body ng-controller="AccountLedgerController">
+<div class=" container mt-10">
+    <div class="mb-10 min-h70  d-md-flex justify-content-md-between align-items-md-center">
+        <div class="px-7 btn-">
+            <h1 class="font-weight-bolder color-blue">Accounting</h1>
+
+        </div>
+        <div class="mt-3 mt-md-0 pl-4 pl-md-0">
+            <div class="w-325px bg-white shadow-stronger-fade-lite border-capsule px-5 py-3">
+                <input type="search" class="border-0 w-100 font-size-15" placeholder="Search Document">
+            </div>
+        </div>
+
+
+    </div>
+
+    <div class="bg-white min-h700 border-radius-lg mb-4 px-8 py-7">
+        <div class="p-3 p-lg-6 d-lg-flex justify-content-between align-items-center mb-2">
+            <div>
+                <span class="text-muted">Account Id: <span class="bold font-size-15">{{::ledger.id}}</span></span>
+                <h2>{{::ledger.name}} <span class="lead color-blue ">&nbsp; ({{::ledger.accountType}})</span></h2>
+            </div>
+            <div class="text-lg-right">
+                <span class="text-muted">Current Balance</span>
+                <h1><span class="color-green">{{::ledger.currentBalance.currency}}</span> {{::ledger.currentBalance.value | number}}</h1>
+            </div>
+
+        </div>
+        <div class="p-3 p-lg-6 ">
+            <p class="lead">Transactions</p>
+            <div>
+                <div class="mb-2">
+
+                </div>
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <td class="w-100px">#</td>
+                        <td class="w-150px">Date</td>
+                        <td class="w-150x">Trans. Type</td>
+                        <td class="w-250px">Memo</td>
+                        <td class="w-200px  text-right">Debit ({{::ledger.currentBalance.currency}})</td>
+                        <td class="w-200px text-right">Credit ({{::ledger.currentBalance.currency}})</td>
+                        <td class="w-200px text-right">Balance ({{::ledger.currentBalance.currency}})</td>
+                    </tr>
+
+                    </thead>
+                    <tbody>
+                    <tr ng-repeat="j in ledger.journalEntries.data">
+                        <td class="">{{::j.journalId}}</td>
+                        <td class="">{{::j.postedDate | date:'dd-MMM-yyyy'}}</td>
+                        <td class="">{{::j.transType}}</td>
+                        <td class="text-overflow-ellipsis w-250px">{{::j.memo}}</td>
+                        <td class="text-right">{{::j.debitAmount| number}}</td>
+                        <td class="text-right">{{::(j.creditAmount | number) || '----'}}</td>
+                        <td class="text-right">{{::(j.balance | number) || '???'}}</td>
+                    </tr>
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="p-4 m-3 lead text-muted">
+            <div class="mb-3">
+                <table class="table table-bordered">
+                    <thead>
+                    <tr>
+                        <th>Debit Account <i class=""></i></th>
+                        <th>Amount</th>
+                        <th>Credit Account</th>
+                        <th>Amount</th>
+                    </tr>
+                    </thead>
+                    <tr ng-repeat="j in journalEntries.data">
+                        <td>{{j.debitAccount.accountName}}</td>
+                        <td>{{j.debitAccount.amount | currency}}</td>
+                        <td>{{j.creditAccount.accountName}}</td>
+                        <td>{{j.creditAccount.amount | currency}}</td>
+                    </tr>
+                </table>
+                
+            </div>
+           <pre>
+               <code>
+                   {{::journalEntries|json}}
+               </code>
+           </pre>
+        </div>
+        <div class="d-flex justify-content-between align-items-center w-450px w-md-550px">
+            <div class="h-145px h-md-160px w-145px w-md-160px border-radius-lg border-2   d-flex flex-column 
+        justify-content-center align-items-center"
+                 style="background-color: rgb(162, 218, 94); border: 2px solid rgb(58, 56, 56)">
+                <span class="bold">&dArr;</span>
+                <span class="bold">Inflow</span>
+                <p class="font-size-h3 mt-0 bold">$80000</p>
+            </div>
+            <div class="h-145px h-md-160px w-145px w-md-160px border-radius-lg border-2   d-flex flex-column 
+        justify-content-center align-items-center"
+                 style="background-color: rgb(171, 165, 246); border: 2px solid rgb(58, 56, 56)">
+                <span class="bold">&dArr;</span>
+                <span class="bold">Outflow</span>
+                <p class="font-size-h3 mt-0 bold">$12000</p>
+            </div>
+            <div class="h-145px h-md-160px w-145px w-md-160px border-radius-lg border-2 text-white  d-flex flex-column 
+        justify-content-center align-items-center"
+                 style="background-color: rgb(30, 30, 29); border: 2px solid rgb(58, 56, 56)">
+                <span class="bold">&backcong;;</span>
+                <span class="bold">Net Changes</span>
+                <p class="font-size-h3 mt-0 bold">$2000</p>
+            </div>
+        </div>
+        <!--Camera demo-->
+        <!-- <div class="camera-container h-650px bg-gray-600 mt-10">
+             <video id="cameraStream" autoplay class="h-100 w-100"></video>
+         </div>-->
+    </div>
+
+</div>
+<script>
+    /*document.addEventListener("DOMContentLoaded", function() {
+        var vidElem = document.querySelector("#cameraStream");
+        var mediaRef = window.navigator.mediaDevices.getUserMedia({
+            video: true
+        }).then(function (stream) {
+            console.log(stream,"Video Stream");
+            vidElem.srcObject = stream;
+        }).catch(function (error) {
+            // release the object handle
+            console.log(error);
+        }).finally(function () {
+            console.log(mediaRef, "Finally called");
+        });
+        
+        console.log(mediaRef, "Media Stream Ref Obj");
+        mediaRef.onerror = function (error) {
+            console.log(error, "Media Stream Ref Obj Error");
+            
+        }
+    });*/
+
+</script>
+<script src="scripts/ng/angular.min.js"></script>
+<script src="scripts/ng/angular-ui-router.min.js"></script>
+<script src="scripts/ng/angular-animate.min.js"></script>
+<script src="scripts/ng/ng-bs-daterangepicker.js"></script>
+<script src="scripts/ng/select.min.js"></script>
+<script src="scripts/ng/ui-bootstrap-tpls-3.0.6.js"></script>
+<script src="scripts/components/appInit.js"></script>
+</body>
+</html>
